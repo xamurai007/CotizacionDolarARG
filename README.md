@@ -1,2 +1,2 @@
 # Twitter-Bot
-Cotizaciones de Dolar en Argentina
+Cotizaciones de Dólar en Argentina
