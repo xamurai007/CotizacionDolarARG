@@ -22,5 +22,6 @@ try:
  for dolar in json:
   if dolar['casa']['nombre'] not in ["Argentina","Dolar","Dolar Soja","Dolar Contado con Liqui","Bitcoin","Dolar turista"]:
    api.update_status(dolar['casa']['nombre'] + " - Compra: $"+ dolar['casa']['compra'] + " / Venta: $"+ dolar['casa']['venta'] + " #Dolar #DolarHoy #DolarBlue")
+   time.sleep(15)
 except:
   print("An exception occurred")
