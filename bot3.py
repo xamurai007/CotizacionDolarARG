@@ -28,7 +28,10 @@ try:
  for dolar in dolar_dict:
    URL_FINAL = URL + dolar_dict[dolar] + "/variacion"
    json = requests.get(URL_FINAL).json()
-   api.update_status(dolar + " - Compra: $" + json['compra'] + " / Venta: $" + json['venta'] + " - Variación: " +json['variacion'] + " #Dolar #DolarHoy #DolarBlue " + json['fecha'])
+   if dolar in ["Dólar Contado con Liqui","Dólar MEP"]:
+   	api.update_status(dolar + " - Referencia: $" + json['venta'] + " - Variación: " +json['variacion'] + " #Dolar #DolarHoy #DolarBlue " + json['fecha'])	
+   else:	
+   	api.update_status(dolar + " - Compra: $" + json['compra'] + " / Venta: $" + json['venta'] + " - Variación: " +json['variacion'] + " #Dolar #DolarHoy #DolarBlue " + json['fecha'])
    time.sleep(15)
 except:
   print("An exception occurred")
