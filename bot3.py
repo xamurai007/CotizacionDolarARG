@@ -1,6 +1,5 @@
 import tweepy
 import time
-import calendar
 import requests
 
 #Authenticate to Twitter
