@@ -16,13 +16,20 @@ api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 user= api.me()
 
-URL = 'https://www.dolarsi.com/api/api.php?type=valoresprincipales'
-json = requests.get(URL).json()
+URL = 'https://mercados.ambito.com/'
+dolar_dict = {
+  "Dólar Oficial": "/dolar/oficial",
+  "Dólar Turista": "/dolarturista",
+  "Dólar Blue": "/dolar/informal",
+  "Dólar Contado con Liqui": "/dolarrava/cl",
+  "Dólar MEP": "/dolarrava/mep"
+}
 
 try:
- for dolar in json:
-  if dolar['casa']['nombre'] not in ["Argentina","Dolar","Dolar Soja","Dolar Contado con Liqui","Bitcoin","Dolar turista"]:
-   api.update_status(dolar['casa']['nombre'] + " - Compra: $"+ dolar['casa']['compra'] + " / Venta: $"+ dolar['casa']['venta'] + " #Dolar #DolarHoy #DolarBlue " + str(calendar.timegm(time.gmtime())))
+ for dolar in dolar_dict:
+   URL_FINAL = URL + dolar_dict[dolar] + "/variacion"
+   json = requests.get(URL_FINAL).json()
+   api.update_status(dolar + " - Compra: $" + json['compra'] + " / Venta: $" + json['venta'] + " - Variación: " +json['variacion'] + " #Dolar #DolarHoy #DolarBlue " + json['fecha'])
    time.sleep(15)
 except:
   print("An exception occurred")
