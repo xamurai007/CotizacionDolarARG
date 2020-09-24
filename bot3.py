@@ -33,6 +33,6 @@ try:
         api.update_status(dolar + " - Referencia: $" + json['venta'] + " - Variación: " + json['variacion'] + " #Dolar #DolarHoy #DolarBlue " + str(calendar.timegm(time.gmtime())))
    else:
         api.update_status(dolar + " - Compra: $" + json['compra'] + " / Venta: $" + json['venta'] + " - Variación: " +json['variacion'] + " #Dolar #DolarHoy #DolarBlue " + str(calendar.timegm(time.gmtime())))
-   time.sleep(15)
+   time.sleep(60)
 except:
   print("An exception occurred")
